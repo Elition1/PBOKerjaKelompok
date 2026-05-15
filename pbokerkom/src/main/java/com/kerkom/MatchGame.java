@@ -1,4 +1,4 @@
-package kerkom;
+package com.kerkom;
 
 import java.util.Random;
 
