@@ -7,4 +7,14 @@ Untuk bagian akhirnya kelompok akan mengimplementasikan fitur-fitur berikut:
 2. Sebuah LeaderBoard untuk show-off kepada teman-teman kalian! 🤩
 3. dan fitur-fitur lain yang bisa tambahkan saat dalam pengerjaan
 
+Dalam Projek ini mencakupi:
+- Pengimplementasian Interface atau Pewarisan
+- Penggunaan String Format untuk menjaga tampilan supaya tidak clutter
+- Penggunaan Pewaktuan dan sistem leaderboard akan tetapi tidak bisa menyimpan hasil informasi tersebut
+  
+Requirements:
+- JDK 24
+- Bisa menginput dan memperkirakan koordinat dalam segi array 2D
+- Begitu Aja
+
 Semoga bisa menikmati dengan game kita! 😀
