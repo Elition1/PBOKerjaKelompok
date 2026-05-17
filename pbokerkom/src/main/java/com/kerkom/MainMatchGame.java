@@ -16,9 +16,9 @@ public class MainMatchGame {
             try {
                 // Pilih kartu pertama
                 view.showMessage("Pilih kartu pertama (baris lalu kolom): ");
-                System.out.print("baris:");
+                System.out.print(String.format("\r%s", "baris:"));
                 int r1 = input.nextInt();
-                System.out.print("kolom:");
+                System.out.print(String.format("\r%s", "baris:"));
                 int c1 = input.nextInt();
                 
                 if (r1 < 0 || r1 >= game.getSize() || c1 < 0 || c1 >= game.getSize()) {
@@ -35,9 +35,9 @@ public class MainMatchGame {
 
                 // Pilih kartu kedua
                 view.showMessage("Pilih kartu kedua (baris lalu kolom): ");
-                System.out.println("baris:");
+                System.out.print(String.format("\r%s", "baris:"));
                 int r2 = input.nextInt();
-                System.out.println("kolom:");
+                System.out.print(String.format("\r%s", "baris:"));
                 int c2 = input.nextInt();
 
                 if (r2 < 0 || r2 >= game.getSize() || c2 < 0 || c2 >= game.getSize()) {
