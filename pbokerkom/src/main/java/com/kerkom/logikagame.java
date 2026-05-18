@@ -1,38 +1,47 @@
 package com.kerkom;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Random;
 
 public class logikagame {
-
+    private Random random = new Random();
     private Kartu[][] board; 
     private int size;
     private int totalPairs;
 
+    //Mempetakan Barisan Peta MatchGame
     public logikagame(int pairs) {
-        this.size = pairs*2;
+        this.size = pairs * 2;
         this.totalPairs =(size*size)/2; 
         this.board =new Kartu[size][size]; //kalau sebelumnya pakaai map tile dan map revealed, file kartu.java nyimpan itu biar ada encapsulation
         generateBoard();
     }
 
+    //Membuat Barisan Angka untuk pemetaan
     private void generateBoard(){
-        ArrayList<Integer> numbers = new ArrayList<>();
+        int[] randomNumbers = new int[size * size];
 
         // bikin sepasang angka
-        for (int i = 1; i <= totalPairs; i++) {
-            numbers.add(i);
-            numbers.add(i);
+        for (int i = 0; i < totalPairs; i++) {
+            randomNumbers[i * 2] = i;
+            randomNumbers[i * 2 + 1] = i;
         }
 
-//acak angka
-        Collections.shuffle(numbers);
+        //acak angka
+        for (int i = randomNumbers.length - 1; i > 0; i--) 
+        {
+            int j = random.nextInt(i + 1);
+            int temp = randomNumbers[i];
+            randomNumbers[i] = randomNumbers[j];
+            randomNumbers[j] = temp;
+        }
 
-        int index = 0;
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                board[i][j] = new Kartu(numbers.get(index++)); 
-            }
+        //isi ke array objek
+        for (int i = 0; i < size; i++) 
+        {
+            for(int j = 0; j < size; j++)
+            {
+                board[i][j] = new Kartu(randomNumbers[i * size + j]); 
+            }   
         }
     }
 
@@ -43,7 +52,7 @@ public class logikagame {
     public int getTotalPairs() {
         return totalPairs;
     }
-//aku pindahin ke kartu.jawa e biar rapih dan bisa diakses sama mainmatchgame
+    //pindahin ke kartu.jawa e biar rapih dan bisa diakses sama mainmatchgame
     public Kartu getKartu(int row, int col) {
         return board[row][col];
     }

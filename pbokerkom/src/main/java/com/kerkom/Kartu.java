@@ -1,4 +1,5 @@
 package com.kerkom;
+
 //data kartu bisa disimpan jadi objek saja
 public class Kartu {
     private int angka;
