@@ -1,6 +1,6 @@
 ﻿# PBOKerjaKelompok
 ----------------------------------------------
-Selamat untuk salah satu projek kita yaitu matching game yaitu sebuah program game dimana Kamu harus mencocokan salah satu angka dengan angka lain yang sudah dipetakan di area pemain. Ini sekarang adalah versi 1.0 prototype dimana hanya kerangka main dengan cara pemetaan bekerja dan lain-lain.
+Selamat datang untuk salah satu projek kita yaitu matching game yaitu sebuah program game dimana Kamu harus mencocokan salah satu angka dengan angka lain yang sudah dipetakan di area pemain. Ini sekarang adalah versi 1.0 prototype dimana hanya kerangka main dengan cara pemetaan bekerja dan lain-lain.
 
 Untuk bagian akhirnya kelompok akan mengimplementasikan fitur-fitur berikut:
 1. Sebuah pilihan kesusahan permainanan dengan 3 pilihan yaitu: 💚 Easy, 💛 Medium, dan 😈 Hard
