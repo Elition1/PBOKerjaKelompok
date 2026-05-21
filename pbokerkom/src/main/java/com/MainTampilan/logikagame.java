@@ -1,9 +1,9 @@
-package com.kerkom;
+package com.MainTampilan;
 
 import java.util.Random;
 
 public class logikagame {
-    private Random random = new Random();
+    public Random random = new Random();
     private Kartu[][] board; 
     private int size;
     private int totalPairs;

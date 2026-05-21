@@ -1,7 +1,6 @@
-package com.kerkom;
+package com.MainTampilan;
 
-public class Tampilan {
-
+public class Tampilan{
     public void printBoard(logikagame game) {
         System.out.println("Board game");
         for (int i = 0; i < game.getSize(); i++) {
@@ -28,5 +27,14 @@ public class Tampilan {
 
     public void showMessage(String message) {
         System.out.println(message);
+    }
+
+    public static void bersihkanLayar()
+    {
+        int Baris = 20;
+        for(int i = 0; i < Baris; i++)
+        {
+            System.out.println();
+        }
     }
 }

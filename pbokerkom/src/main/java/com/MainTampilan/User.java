@@ -1,22 +1,13 @@
-package com.kerkom;
+package com.MainTampilan;
 
 public class User 
 {
     private String name;
     private int time;
-    private int percobaan;
+    private double Waktu = System.nanoTime();
 
-    public User(String name, int time, int percobaan) 
-    {
-        name = name;
-        time = 0;
-        percobaan = 0;
-    }
-
-    public void tambahCobaan()
-    {
-        percobaan++;
-    }
+    public User(double timeStart) 
+    {}
 
     public String getName() {
         return name;
@@ -33,9 +24,4 @@ public class User
     public void setTime(int time) {
         this.time = time;
     }
-
-    public int getPercobaan() {
-        return percobaan;
-    }
-    
 }

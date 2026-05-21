@@ -1,4 +1,4 @@
-package com.kerkom;
+package com.MainTampilan;
 
 //data kartu bisa disimpan jadi objek saja
 public class Kartu {
