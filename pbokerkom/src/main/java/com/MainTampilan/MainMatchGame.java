@@ -5,6 +5,8 @@ import com.difficulty.*;
 
 public class MainMatchGame {
     static int DelayOutput = 2000;
+    private static User[] leaderboard = new User[50];
+    private static int jumlahUser = 0;
     //Shindo bikin tampilan dengan ada pilihan 1. Start, 2. leaderboard, 3.Exit (yang bagian kedua dikerjain Tony)
     public static void main(String[] args) {
         
@@ -44,6 +46,8 @@ public class MainMatchGame {
                 diff.difficulty();
                 int ukuranPapan = diff.boardSize();
                 //Bates Sindo
+
+                double waktumulai = System.nanoTime();
 
                 //Ini yang tes tadi, yang pasang 2 buat tes, kuubah jadi gini
                 logikagame game = new logikagame(ukuranPapan); 
@@ -129,15 +133,59 @@ public class MainMatchGame {
                 view.printBoard(game);
                 view.showMessage("SELAMAT! Kamu menang!");
 
+                // ubjek user untuuk itung waktu
+                User player = new User(waktumulai);
+
+                System.out.print("masukan inisialmu: ");
+                input.nextLine(); //bersih enter
+                String nama = input.nextLine();
+                
+                if (nama.isEmpty()) {
+                    nama = "Player";
+                }
+                player.setName(nama);
+
+                if (jumlahUser < leaderboard.length) {
+                    leaderboard[jumlahUser] = player;
+                    jumlahUser++;
+                }
+                
+                // urut pake bubble sort
+                for (int i = 0; i < jumlahUser - 1; i++) {
+                    for (int j = 0; j < jumlahUser - i - 1; j++) {
+                        if (leaderboard[j].getTime() > leaderboard[j + 1].getTime()) {
+                            User temp = leaderboard[j];
+                            leaderboard[j] = leaderboard[j + 1];
+                            leaderboard[j + 1] = temp;
+                        }
+                    }
+                }
+
+                System.out.println("Skor disimpan ,waktu: " + player.getTime() + " detik.");
                 try {Thread.sleep(DelayOutput);} catch (Exception e) {}
 
                 
                 // Nutup Menu 1, bikin Menu 2 dan Menu 3(Menu 2 dan 3 belum coy)
             } else if (pilihan == 2) {
-                System.out.println("Menu Leaderboard - Tugasnya Tony");
-                input.nextLine(); input.nextLine(); // Biar berhenti bentar
+                Tampilan.bersihkanLayar();
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                System.out.println("LEADERBOARD");
+                System.out.println("No.\tNama\t\tWaktu");
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                if (jumlahUser == 0) {
+                    System.out.println("belum ada pemain");
+                } else {
+                    for (int i = 0; i < jumlahUser; i++) {
+                        User u = leaderboard[i];
+                        System.out.println((i + 1) + ".\t" + u.getName() + "\t\t" + u.getTime() + " detik");
+                    }
+                }
+                System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+                System.out.println("enter untuk kembali ke menu.");
+                input.nextLine(); // nersih enter
+                input.nextLine(); // menunggu enter
             } else if (pilihan == 3) {
-                System.out.println("Keluar game...");
+                System.out.println("keluar game...");
                 try {Thread.sleep(DelayOutput);} catch (Exception e) {}
                 isMenuBerjalan = false; // Bikin loop menu berhenti
             }

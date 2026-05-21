@@ -7,7 +7,10 @@ public class User
     private double Waktu = System.nanoTime();
 
     public User(double timeStart) 
-    {}
+    {
+        double timeEnd = System.nanoTime();
+        this.time = (int) ((timeEnd - timeStart) / 1000000000.0); //siapa tau
+    }
 
     public String getName() {
         return name;
