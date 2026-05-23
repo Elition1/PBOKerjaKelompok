@@ -5,7 +5,7 @@ import com.difficulty.*;
 
 public class MainMatchGame {
     static int DelayOutput = 2000;
-    private static User[] leaderboard = new User[50];
+    private static User[] leaderboard = new User[10];
     private static int jumlahUser = 0;
     //Shindo bikin tampilan dengan ada pilihan 1. Start, 2. leaderboard, 3.Exit (yang bagian kedua dikerjain Tony)
     public static void main(String[] args) {
@@ -16,7 +16,7 @@ public class MainMatchGame {
         boolean isMenuBerjalan = true;
         
         while (isMenuBerjalan) {
-            Tampilan.bersihkanLayar();
+            UtilGame.bersihkanLayar();
             int pilihan = 0;
             System.out.println("Matching Game : Kelompok Romusha");
             System.out.println("1. Start");
@@ -37,6 +37,7 @@ public class MainMatchGame {
                 // Logika milih level
                 System.out.println("Pilih: 1. Easy | 2. Medium | 3. Hard");
                 int level = input.nextInt();
+                
                 difficultySelector diff;
                 
                 if (level == 1) diff = new Easy();
@@ -54,12 +55,12 @@ public class MainMatchGame {
                 // ----------------------------------------------------
 
                 Tampilan view = new Tampilan();
-                int DelayOutput = 1500;
+                int delayOutput = 1500;
 
                 int matchedPairs = 0;
 
                 while (matchedPairs < game.getTotalPairs()) {
-                    Tampilan.bersihkanLayar();
+                    UtilGame.bersihkanLayar();
                     view.printBoard(game);
 
                     try {
@@ -72,17 +73,17 @@ public class MainMatchGame {
                         
                         if (Baris1 < 0 || Baris1 >= game.getSize() || Kolom1 < 0 || Kolom1 >= game.getSize()) {
                             view.showMessage("Posisi kartu 1 di luar batas!");
-                            Thread.sleep(DelayOutput); 
+                            Thread.sleep(delayOutput); 
                             continue;
                         }
                         
                         if (game.getKartu(Baris1, Kolom1).isMatched() || game.getKartu(Baris1, Kolom1).isKebuka()) {
                             view.showMessage("Kartu itu udah kebuka!");
-                            Thread.sleep(DelayOutput); 
+                            Thread.sleep(delayOutput); 
                             continue;
                         }
 
-                        Tampilan.bersihkanLayar();
+                        UtilGame.bersihkanLayar();
                         view.revealBoard(game, Baris1, Kolom1);           
 
                         // Pilih kartu kedua
@@ -94,32 +95,32 @@ public class MainMatchGame {
                         
                         if (Baris2 < 0 || Baris2 >= game.getSize() || Kolom2 < 0 || Kolom2 >= game.getSize()) {
                             view.showMessage("Posisi kartu 2 di luar batas!");
-                            Thread.sleep(DelayOutput);
+                            Thread.sleep(delayOutput);
                             game.getKartu(Baris1, Kolom1).setKebuka(false); // tutup lagi kartu 1
                             continue;
                         }
                         
                         if ((Baris1 == Baris2 && Kolom1 == Kolom2) || game.getKartu(Baris2, Kolom2).isMatched()) {
                             view.showMessage("Gak boleh pilih kartu yang sama!");
-                            Thread.sleep(DelayOutput);
+                            Thread.sleep(delayOutput);
                             game.getKartu(Baris1, Kolom1).setKebuka(false);
                             continue;
                         }
 
                         Thread.sleep(2000);
-                        Tampilan.bersihkanLayar();
+                        UtilGame.bersihkanLayar();
                         view.revealBoard(game, Baris2, Kolom2);
 
                         // Cek Match
                         if (game.isMatched(Baris1, Kolom1, Baris2, Kolom2)) {
                             view.showMessage("nenot bij macth");
-                            Thread.sleep(DelayOutput); 
+                            Thread.sleep(delayOutput); 
                             game.getKartu(Baris1, Kolom1).setMatched(true);
                             game.getKartu(Baris2, Kolom2).setMatched(true);
                             matchedPairs++;
                         } else {
                             view.showMessage("Matching Salah");
-                            Thread.sleep(DelayOutput); 
+                            Thread.sleep(delayOutput); 
                             game.getKartu(Baris1, Kolom1).setKebuka(false);
                             game.getKartu(Baris2, Kolom2).setKebuka(false);
                         }
@@ -136,7 +137,7 @@ public class MainMatchGame {
                 // ubjek user untuuk itung waktu
                 User player = new User(waktumulai);
 
-                System.out.print("masukan inisialmu: ");
+                view.showMessage("Nama Inisialmu");
                 input.nextLine(); //bersih enter
                 String nama = input.nextLine();
                 
@@ -165,9 +166,9 @@ public class MainMatchGame {
                 try {Thread.sleep(DelayOutput);} catch (Exception e) {}
 
                 
-                // Nutup Menu 1, bikin Menu 2 dan Menu 3(Menu 2 dan 3 belum coy)
+                // Nutup Menu 1, bikin Menu 2 dan Menu 3(Menu 2 dan 3 belum coy) (Done)
             } else if (pilihan == 2) {
-                Tampilan.bersihkanLayar();
+                UtilGame.bersihkanLayar();
                 System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                 System.out.println("LEADERBOARD");
                 System.out.println("No.\tNama\t\tWaktu");

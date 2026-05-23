@@ -3,6 +3,12 @@ package com.difficulty;
 public class Hard implements difficultySelector {
     
     @Override
+    public String difficultyChosen()
+    {
+        return "Hard";
+    }
+
+    @Override
     public int boardSize() {
         return 4;
     }

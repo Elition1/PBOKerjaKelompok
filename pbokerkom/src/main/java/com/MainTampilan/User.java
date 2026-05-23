@@ -5,6 +5,7 @@ public class User
     private String name;
     private int time;
     private double Waktu = System.nanoTime();
+    private String difficulty;
 
     public User(double timeStart) 
     {

@@ -28,13 +28,4 @@ public class Tampilan{
     public void showMessage(String message) {
         System.out.println(message);
     }
-
-    public static void bersihkanLayar()
-    {
-        int Baris = 20;
-        for(int i = 0; i < Baris; i++)
-        {
-            System.out.println();
-        }
-    }
 }
