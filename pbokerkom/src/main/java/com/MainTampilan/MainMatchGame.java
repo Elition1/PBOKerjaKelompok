@@ -2,6 +2,7 @@ package com.MainTampilan;
 
 import java.util.Scanner;
 import com.difficulty.*;
+import com.leaderBoardLogic.*;
 
 public class MainMatchGame {
     static int DelayOutput = 2000;
@@ -151,7 +152,6 @@ public class MainMatchGame {
                     jumlahUser++;
                 }
                 
-                // urut pake bubble sort
                 for (int i = 0; i < jumlahUser - 1; i++) {
                     for (int j = 0; j < jumlahUser - i - 1; j++) {
                         if (leaderboard[j].getTime() > leaderboard[j + 1].getTime()) {

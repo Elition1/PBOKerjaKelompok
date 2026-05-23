@@ -1,4 +1,6 @@
-package com.MainTampilan;
+package com.leaderBoardLogic;
+
+import com.difficulty.*;
 
 public class User 
 {
@@ -27,5 +29,15 @@ public class User
 
     public void setTime(int time) {
         this.time = time;
+    }
+
+    public String getDifficulty()
+    {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty)
+    {
+        this.difficulty = difficulty;
     }
 }
