@@ -1,24 +1,27 @@
-package com.MainTampilan;
+package com.Game;
 
 import java.util.Scanner;
+
 import com.difficulty.*;
 import com.leaderBoardLogic.*;
+import com.MainTampilan.*;
+import com.settings.UtilGame;
 
-public class MainMatchGame {
-    static int DelayOutput = 2000;
-    private static User[] leaderboard = new User[10];
-    private static int jumlahUser = 0;
+public class MainMatchGame {;
+    static leaderBoardEasy leaderboardEasy = new leaderBoardEasy();
+    static leaderBoardMedium leaderboardMedium = new leaderBoardMedium();
+    static leaderBoardHard leaderboardHard = new leaderBoardHard();
+    static int delayOutput = 1500;
+    static Tampilan view = new Tampilan();
+    static Scanner input = new Scanner(System.in);
+    
     //Shindo bikin tampilan dengan ada pilihan 1. Start, 2. leaderboard, 3.Exit (yang bagian kedua dikerjain Tony)
     public static void main(String[] args) {
-        
-        Scanner input = new Scanner(System.in);
-
-        //Sindo
         boolean isMenuBerjalan = true;
         
         while (isMenuBerjalan) {
             UtilGame.bersihkanLayar();
-            int pilihan = 0;
+            int pilihan = -1;
             System.out.println("Matching Game : Kelompok Romusha");
             System.out.println("1. Start");
             System.out.println("2. Leaderboard");
@@ -34,6 +37,8 @@ public class MainMatchGame {
                 continue;
             }
             
+            try {Thread.sleep(delayOutput);} catch (Exception e){}
+
             if (pilihan == 1) {
                 // Logika milih level
                 System.out.println("Pilih: 1. Easy | 2. Medium | 3. Hard");
@@ -41,22 +46,28 @@ public class MainMatchGame {
                 
                 difficultySelector diff;
                 
-                if (level == 1) diff = new Easy();
-                else if (level == 2) diff = new Medium();
-                else diff = new Hard();
-                
+                switch (level) {
+                    case 1:
+                        diff = new Easy();
+                        break;
+                    case 2:
+                        diff = new Medium();
+                        break; 
+                    case 3:
+                        diff = new Hard();
+                        break;
+                    default:
+                        view.showMessage("Salah Pilih, Coba Lagi");
+                        continue;
+                }
+
+                String diffSelect = diff.difficultyChosen();
                 diff.difficulty();
                 int ukuranPapan = diff.boardSize();
-                //Bates Sindo
 
                 double waktumulai = System.nanoTime();
 
-                //Ini yang tes tadi, yang pasang 2 buat tes, kuubah jadi gini
                 logikagame game = new logikagame(ukuranPapan); 
-                // ----------------------------------------------------
-
-                Tampilan view = new Tampilan();
-                int delayOutput = 1500;
 
                 int matchedPairs = 0;
 
@@ -69,8 +80,10 @@ public class MainMatchGame {
                         view.showMessage("Pilih kartu pertama (baris lalu kolom): ");
                         System.out.print("Baris : ");
                         int Baris1 = input.nextInt();
+                        input.nextLine();
                         System.out.print("Kolom : ");
                         int Kolom1 = input.nextInt();
+                        input.nextLine();
                         
                         if (Baris1 < 0 || Baris1 >= game.getSize() || Kolom1 < 0 || Kolom1 >= game.getSize()) {
                             view.showMessage("Posisi kartu 1 di luar batas!");
@@ -91,9 +104,21 @@ public class MainMatchGame {
                         view.showMessage("Pilih kartu kedua (baris lalu kolom): ");
                         System.out.print("Baris : ");
                         int Baris2 = input.nextInt();
+                        input.nextLine();
                         System.out.print("Kolom : ");
                         int Kolom2 = input.nextInt();
-                        
+                        input.nextLine();
+
+                        // Secret Feature
+                        UtilGame.WINGAME(Kolom2);
+            
+                        //Kemudahan debugging
+                        if(UtilGame.WIN)
+                        {
+                            matchedPairs = 100;
+                            continue;
+                        }
+
                         if (Baris2 < 0 || Baris2 >= game.getSize() || Kolom2 < 0 || Kolom2 >= game.getSize()) {
                             view.showMessage("Posisi kartu 2 di luar batas!");
                             Thread.sleep(delayOutput);
@@ -108,19 +133,18 @@ public class MainMatchGame {
                             continue;
                         }
 
-                        Thread.sleep(2000);
                         UtilGame.bersihkanLayar();
                         view.revealBoard(game, Baris2, Kolom2);
 
                         // Cek Match
                         if (game.isMatched(Baris1, Kolom1, Baris2, Kolom2)) {
-                            view.showMessage("nenot bij macth");
+                            view.showMessage("Match Benar");
                             Thread.sleep(delayOutput); 
                             game.getKartu(Baris1, Kolom1).setMatched(true);
                             game.getKartu(Baris2, Kolom2).setMatched(true);
                             matchedPairs++;
                         } else {
-                            view.showMessage("Matching Salah");
+                            view.showMessage("Match Salah");
                             Thread.sleep(delayOutput); 
                             game.getKartu(Baris1, Kolom1).setKebuka(false);
                             game.getKartu(Baris2, Kolom2).setKebuka(false);
@@ -128,6 +152,7 @@ public class MainMatchGame {
                         
                     } catch (Exception e) {
                         view.showMessage("Input harus angka");
+                        try {Thread.sleep(delayOutput);} catch (Exception w) {}
                         input.nextLine(); // clear buffer
                     }
                 }
@@ -135,59 +160,72 @@ public class MainMatchGame {
                 view.printBoard(game);
                 view.showMessage("SELAMAT! Kamu menang!");
 
-                // ubjek user untuuk itung waktu
-                User player = new User(waktumulai);
+                double waktuakhir = System.nanoTime();
+                int time = (int) ((waktuakhir - waktumulai) / 1000000000.0); //siapa tau
 
-                view.showMessage("Nama Inisialmu");
-                input.nextLine(); //bersih enter
+                view.showMessage("Nama Inisialmu : ");
                 String nama = input.nextLine();
                 
                 if (nama.isEmpty()) {
                     nama = "Player";
                 }
-                player.setName(nama);
 
-                if (jumlahUser < leaderboard.length) {
-                    leaderboard[jumlahUser] = player;
-                    jumlahUser++;
+                User player = new User(time, nama);
+
+                switch (diffSelect)
+                {
+                    case "Easy":
+                        player.setDifficulty(diffSelect);
+                        leaderboardEasy.mencobaMenambahUser(player);
+                        break;
+                    case "Medium":
+                        player.setDifficulty(diffSelect);
+                        leaderboardMedium.mencobaMenambahUser(player);
+                        break;
+                    case "Hard":
+                        player.setDifficulty(diffSelect);
+                        leaderboardHard.mencobaMenambahUser(player);
+                        break;
                 }
-                
-                for (int i = 0; i < jumlahUser - 1; i++) {
-                    for (int j = 0; j < jumlahUser - i - 1; j++) {
-                        if (leaderboard[j].getTime() > leaderboard[j + 1].getTime()) {
-                            User temp = leaderboard[j];
-                            leaderboard[j] = leaderboard[j + 1];
-                            leaderboard[j + 1] = temp;
-                        }
-                    }
-                }
+               
+                System.out.println("Skor disimpan ,waktu: " + player.getTime() + " detik, Kesusahan: " + player.getDifficulty());
+                try {Thread.sleep(delayOutput);} catch (Exception e) {}
 
-                System.out.println("Skor disimpan ,waktu: " + player.getTime() + " detik.");
-                try {Thread.sleep(DelayOutput);} catch (Exception e) {}
-
-                
-                // Nutup Menu 1, bikin Menu 2 dan Menu 3(Menu 2 dan 3 belum coy) (Done)
             } else if (pilihan == 2) {
                 UtilGame.bersihkanLayar();
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                System.out.println("LEADERBOARD");
-                System.out.println("No.\tNama\t\tWaktu");
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                if (jumlahUser == 0) {
-                    System.out.println("belum ada pemain");
-                } else {
-                    for (int i = 0; i < jumlahUser; i++) {
-                        User u = leaderboard[i];
-                        System.out.println((i + 1) + ".\t" + u.getName() + "\t\t" + u.getTime() + " detik");
-                    }
+                view.showMessage("Silahkan Kategori Tingkat Kesulitan LeaderBoard");
+                view.showMessage("1. Easy");
+                view.showMessage("2. Medium");
+                view.showMessage("3. Hard");
+                System.out.print("Pilihan : ");
+                pilihan = -1;
+                try {
+                    pilihan = input.nextInt();
+                    input.nextLine();
+                    Thread.sleep(delayOutput);
+                } catch (Exception e) {input.nextLine();}
+                
+                switch (pilihan)
+                {
+                    case 1:
+                        leaderboardEasy.showLeaderBoard("Easy");
+                        break;
+                    case 2:
+                        leaderboardMedium.showLeaderBoard("Medium");
+                        break;
+                    case 3:
+                        leaderboardHard.showLeaderBoard("Hard");
+                        break;
+                    default:
+                        view.showMessage("Something's Wrong, try again");
+                        try {Thread.sleep(delayOutput);} catch (Exception e){}
+                        break;
                 }
-                System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-                System.out.println("enter untuk kembali ke menu.");
+                view.showMessage("Press Enter to go back");
                 input.nextLine(); // nersih enter
-                input.nextLine(); // menunggu enter
             } else if (pilihan == 3) {
-                System.out.println("keluar game...");
-                try {Thread.sleep(DelayOutput);} catch (Exception e) {}
+                view.showMessage("Keluar Game...");
+                try {Thread.sleep(delayOutput);} catch (Exception e) {}
                 isMenuBerjalan = false; // Bikin loop menu berhenti
             }
         }

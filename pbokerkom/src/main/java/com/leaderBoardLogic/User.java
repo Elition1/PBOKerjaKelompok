@@ -6,13 +6,12 @@ public class User
 {
     private String name;
     private int time;
-    private double Waktu = System.nanoTime();
     private String difficulty;
 
-    public User(double timeStart) 
+    public User(int time, String nama) 
     {
-        double timeEnd = System.nanoTime();
-        this.time = (int) ((timeEnd - timeStart) / 1000000000.0); //siapa tau
+        this.name = name;
+        this.time = time;
     }
 
     public String getName() {
