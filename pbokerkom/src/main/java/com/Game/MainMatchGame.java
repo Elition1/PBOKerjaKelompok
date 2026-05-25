@@ -2,15 +2,15 @@ package com.Game;
 
 import java.util.Scanner;
 
-import com.difficulty.*;
-import com.leaderBoardLogic.*;
+import com.DifficultyLogic.*;
+import com.LeaderBoardLogic.*;
 import com.MainTampilan.*;
 import com.settings.UtilGame;
 
 public class MainMatchGame {;
-    static leaderBoardEasy leaderboardEasy = new leaderBoardEasy();
-    static leaderBoardMedium leaderboardMedium = new leaderBoardMedium();
-    static leaderBoardHard leaderboardHard = new leaderBoardHard();
+    static LeaderBoardEasy leaderBoardEasy = new LeaderBoardEasy();
+    static LeaderBoardMedium leaderBoardMedium = new LeaderBoardMedium();
+    static LeaderBoardHard leaderBoardHard = new LeaderBoardHard();
     static int delayOutput = 1500;
     static Tampilan view = new Tampilan();
     static Scanner input = new Scanner(System.in);
@@ -44,7 +44,7 @@ public class MainMatchGame {;
                 System.out.println("Pilih: 1. Easy | 2. Medium | 3. Hard");
                 int level = input.nextInt();
                 
-                difficultySelector diff;
+                DifficultySelector diff;
                 
                 switch (level) {
                     case 1:
@@ -175,15 +175,15 @@ public class MainMatchGame {;
                 {
                     case "Easy":
                         player.setDifficulty(diffSelect);
-                        leaderboardEasy.mencobaMenambahUser(player);
+                        leaderBoardEasy.mencobaMenambahUser(player);
                         break;
                     case "Medium":
                         player.setDifficulty(diffSelect);
-                        leaderboardMedium.mencobaMenambahUser(player);
+                        leaderBoardMedium.mencobaMenambahUser(player);
                         break;
                     case "Hard":
                         player.setDifficulty(diffSelect);
-                        leaderboardHard.mencobaMenambahUser(player);
+                        leaderBoardHard.mencobaMenambahUser(player);
                         break;
                 }
                
@@ -208,13 +208,13 @@ public class MainMatchGame {;
                 switch (pilihan)
                 {
                     case 1:
-                        leaderboardEasy.showLeaderBoard("Easy");
+                        leaderBoardEasy.showLeaderBoard("Easy");
                         break;
                     case 2:
-                        leaderboardMedium.showLeaderBoard("Medium");
+                        leaderBoardMedium.showLeaderBoard("Medium");
                         break;
                     case 3:
-                        leaderboardHard.showLeaderBoard("Hard");
+                        leaderBoardHard.showLeaderBoard("Hard");
                         break;
                     default:
                         view.showMessage("Something's Wrong, try again");

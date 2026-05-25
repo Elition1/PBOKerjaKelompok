@@ -1,12 +1,12 @@
-package com.leaderBoardLogic;
+package com.LeaderBoardLogic;
 
-public class leaderBoard 
+public class LeaderBoard 
 {
     public final int MAX_USER = 10;
     protected User[] userLeaderBoard;
     protected int sizeArray = 0;
     
-    public leaderBoard()
+    public LeaderBoard()
     {
         this.userLeaderBoard = new User[MAX_USER];
     } 

@@ -1,4 +1,4 @@
-package com.leaderBoardLogic;
+package com.LeaderBoardLogic;
 
 public class User 
 {

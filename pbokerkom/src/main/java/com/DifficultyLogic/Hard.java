@@ -1,6 +1,6 @@
-package com.difficulty;
+package com.DifficultyLogic;
 
-public class Hard implements difficultySelector {
+public class Hard implements DifficultySelector {
     
     @Override
     public String difficultyChosen()
