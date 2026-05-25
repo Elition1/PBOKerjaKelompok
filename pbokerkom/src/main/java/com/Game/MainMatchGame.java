@@ -111,13 +111,6 @@ public class MainMatchGame {;
 
                         // Secret Feature
                         UtilGame.WINGAME(Kolom2);
-            
-                        //Kemudahan debugging
-                        if(UtilGame.WIN)
-                        {
-                            matchedPairs = 100;
-                            continue;
-                        }
 
                         if (Baris2 < 0 || Baris2 >= game.getSize() || Kolom2 < 0 || Kolom2 >= game.getSize()) {
                             view.showMessage("Posisi kartu 2 di luar batas!");
@@ -135,6 +128,12 @@ public class MainMatchGame {;
 
                         UtilGame.bersihkanLayar();
                         view.revealBoard(game, Baris2, Kolom2);
+
+                        //Kemudahan debugging
+                        if(UtilGame.WIN)
+                        {
+                            matchedPairs = 100;
+                        }
 
                         // Cek Match
                         if (game.isMatched(Baris1, Kolom1, Baris2, Kolom2)) {
@@ -189,6 +188,7 @@ public class MainMatchGame {;
                 }
                
                 System.out.println("Skor disimpan ,waktu: " + player.getTime() + " detik, Kesusahan: " + player.getDifficulty());
+                UtilGame.WIN = false;
                 try {Thread.sleep(delayOutput);} catch (Exception e) {}
 
             } else if (pilihan == 2) {

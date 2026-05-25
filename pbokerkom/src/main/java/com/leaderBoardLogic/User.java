@@ -1,14 +1,12 @@
 package com.leaderBoardLogic;
 
-import com.difficulty.*;
-
 public class User 
 {
     private String name;
     private int time;
     private String difficulty;
 
-    public User(int time, String nama) 
+    public User(int time, String name) 
     {
         this.name = name;
         this.time = time;

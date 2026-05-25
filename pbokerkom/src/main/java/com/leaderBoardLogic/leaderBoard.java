@@ -36,13 +36,11 @@ public class leaderBoard
     {
         for(int i = 1; i < sizeArray; i++)
         {
-
-            int j = i - 1;
-            double key = leaderBoard[i].getTime();
             User userTime = leaderBoard[i];
-            double userTimeBefore = leaderBoard[j].getTime();
+            double key = leaderBoard[i].getTime();
+            int j = i - 1;
 
-                while(j >= 0 && userTimeBefore > key) 
+                while(j >= 0 && leaderBoard[j].getTime() > key) 
                 {
                     leaderBoard[j + 1] = leaderBoard[j];
                     j--;
@@ -62,13 +60,19 @@ public class leaderBoard
         }
 
         System.out.println("Difficulty : " + difficulty);
+        System.out.printf("""
+            %-5s | %-7s | %s
+            """,
+            "No",
+            "Nama",
+            "Time");
         System.out.println("====================================");
         for(int i = 0; i < sizeArray; i++)
         {
             String nama = userLeaderBoard[i].getName();
             double time = userLeaderBoard[i].getTime();
             System.out.printf("""
-                    %-5d %-7s %.0f
+                    %-5d | %-7s | %.0f
                     """,
                     (i + 1),
                     nama,
