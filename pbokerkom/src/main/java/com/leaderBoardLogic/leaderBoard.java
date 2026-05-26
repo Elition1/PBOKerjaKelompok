@@ -1,5 +1,6 @@
 package com.LeaderBoardLogic;
 
+//class leaderBoard untuk menyimpan dan mengurutkan top 10 user berdasarkan waktu tercepat
 public class LeaderBoard 
 {
     public final int MAX_USER = 10;

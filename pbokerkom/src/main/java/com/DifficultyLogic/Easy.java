@@ -1,7 +1,10 @@
 package com.DifficultyLogic;
 
+//mengimplementasikan interface difficultySelector
 public class Easy implements DifficultySelector 
 {   
+    //method untuk mode Easy: mengembalikan nama difficulty "Easy", ukuran board 2, 
+    //dan menampilkan pesan bahwa tingkat kesulitannya Easy.
     @Override
     public String difficultyChosen()
     {

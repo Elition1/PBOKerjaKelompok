@@ -1,12 +1,13 @@
 package com.MainTampilan;
 
-//data kartu bisa disimpan jadi objek saja
+//Objek Kartu untuk pemetaan dan pencocokan
 public class Kartu 
 {
     private int angka;
     private boolean terbuka;
     private boolean sudahCocok;
 
+    //constructor untuk membuat objek Kartu dengan nilai angka tertentu. 
     public Kartu(int angka) 
     {
         this.angka = angka;

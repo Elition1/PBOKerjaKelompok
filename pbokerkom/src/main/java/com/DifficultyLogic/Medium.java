@@ -2,6 +2,8 @@ package com.DifficultyLogic;
 
 public class Medium implements DifficultySelector 
 {    
+    //mengembalikan nama "Medium", ukuran board 3, dan menampilkan pesan bahwa 
+    //tingkat kesulitannya Medium dengan papan 6x6
     @Override
     public String difficultyChosen()
     {

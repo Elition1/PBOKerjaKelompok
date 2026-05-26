@@ -1,5 +1,6 @@
 package com.LeaderBoardLogic;
 
+//class User untuk menyimpan data pemain.
 public class User 
 {
     private String name;

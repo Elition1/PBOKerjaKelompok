@@ -1,5 +1,7 @@
 package com.LeaderBoardLogic;
 
+//class leaderBoardHard yang mewarisi class leaderBoard
+//class inijuga memakai semua atribut dan method dari leaderBoard
 public class LeaderBoardHard extends LeaderBoard
 {
     public LeaderBoardHard()

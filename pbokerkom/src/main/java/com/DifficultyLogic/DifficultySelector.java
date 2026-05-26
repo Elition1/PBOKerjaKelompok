@@ -1,6 +1,6 @@
 package com.DifficultyLogic;
 
-//Shindo bikin kelas easy, medium, dan hard untuk mempetakan ukuran board
+//interface yang berisi aturan method yang harus dibuat oleh class lain.
 public interface DifficultySelector 
 {
     abstract String difficultyChosen();

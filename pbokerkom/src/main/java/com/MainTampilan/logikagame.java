@@ -2,6 +2,7 @@ package com.MainTampilan;
 
 import java.util.Random;
 
+//untuk menyimpan data utama permainan, angka kartu, apakah kartu sudah dibuka, dan apakah kartu sudah cocok
 public class LogikaGame 
 {
     public Random random = new Random();

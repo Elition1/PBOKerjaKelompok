@@ -2,6 +2,7 @@ package com.MainTampilan;
 
 public class Tampilan
 {
+    //untuk menampilkan board permainan ke jendela output
     public void printBoard(LogikaGame game) 
     {
         System.out.println("Board game");
