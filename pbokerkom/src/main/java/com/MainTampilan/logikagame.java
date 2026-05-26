@@ -2,14 +2,14 @@ package com.MainTampilan;
 
 import java.util.Random;
 
-public class logikagame {
+public class LogikaGame {
     public Random random = new Random();
     private Kartu[][] board; 
     private int size;
     private int totalPairs;
 
     //Mempetakan Barisan Peta MatchGame
-    public logikagame(int pairs) {
+    public LogikaGame(int pairs) {
         this.size = pairs * 2;
         this.totalPairs =(size*size)/2; 
         this.board =new Kartu[size][size]; //kalau sebelumnya pakaai map tile dan map revealed, file kartu.java nyimpan itu biar ada encapsulation

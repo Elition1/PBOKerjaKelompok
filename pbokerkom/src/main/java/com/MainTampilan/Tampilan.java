@@ -1,7 +1,7 @@
 package com.MainTampilan;
 
 public class Tampilan{
-    public void printBoard(logikagame game) {
+    public void printBoard(LogikaGame game) {
         System.out.println("Board game");
         for (int i = 0; i < game.getSize(); i++) {
             for (int j = 0; j < game.getSize(); j++) {
@@ -18,7 +18,7 @@ public class Tampilan{
         }
     }
     
-    public void revealBoard(logikagame game, int r, int c) {
+    public void revealBoard(LogikaGame game, int r, int c) {
         
         // buka kartunya
         game.getKartu(r, c).setKebuka(true);
