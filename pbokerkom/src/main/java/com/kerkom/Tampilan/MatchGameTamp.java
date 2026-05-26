@@ -1,4 +1,4 @@
-package com.kerkom;
+package com.kerkom.Tampilan;
 
 public class MatchGameTamp {
 
