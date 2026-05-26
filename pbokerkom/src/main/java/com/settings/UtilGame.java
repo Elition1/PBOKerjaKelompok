@@ -20,7 +20,7 @@ public class UtilGame
                 try {Thread.sleep(1500);} catch (Exception e) {}
                 break;
             case -1:
-                System.out.println("");
+                System.out.println("Rawr");
                 try {Thread.sleep(1500);} catch (Exception e) {}
                 break;
             case 777:

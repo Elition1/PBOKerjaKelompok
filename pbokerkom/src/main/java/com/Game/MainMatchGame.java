@@ -7,7 +7,8 @@ import com.LeaderBoardLogic.*;
 import com.MainTampilan.*;
 import com.settings.UtilGame;
 
-public class MainMatchGame {;
+public class MainMatchGame 
+{
     static LeaderBoardEasy leaderBoardEasy = new LeaderBoardEasy();
     static LeaderBoardMedium leaderBoardMedium = new LeaderBoardMedium();
     static LeaderBoardHard leaderBoardHard = new LeaderBoardHard();
@@ -16,37 +17,44 @@ public class MainMatchGame {;
     static Scanner input = new Scanner(System.in);
     
     //Shindo bikin tampilan dengan ada pilihan 1. Start, 2. leaderboard, 3.Exit (yang bagian kedua dikerjain Tony)
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         boolean isMenuBerjalan = true;
         
-        while (isMenuBerjalan) {
+        while (isMenuBerjalan) 
+        {
             UtilGame.bersihkanLayar();
             int pilihan = -1;
-            System.out.println("Matching Game : Kelompok Romusha");
-            System.out.println("1. Start");
-            System.out.println("2. Leaderboard");
-            System.out.println("3. Exit");
-            System.out.println("=====================");
+            view.showMessage("Matching Game : Kelompok Romusha");
+            view.showMessage("1. Start");
+            view.showMessage("2. Leaderboard");
+            view.showMessage("3. Exit");
+            view.showMessage("=====================");
             System.out.print("Pilih: ");
             
-            try {
+            try 
+            {
                 pilihan = input.nextInt();
-            } catch (Exception e) {
-                System.out.println("Input harus angka");
+            } 
+            catch (Exception e) 
+            {
+                view.showMessage("Input harus angka");
                 input.nextLine();
                 continue;
             }
             
             try {Thread.sleep(delayOutput);} catch (Exception e){}
 
-            if (pilihan == 1) {
+            if (pilihan == 1) 
+            {
                 // Logika milih level
-                System.out.println("Pilih: 1. Easy | 2. Medium | 3. Hard");
+                view.showMessage("Pilih: 1. Easy | 2. Medium | 3. Hard");
                 int level = input.nextInt();
                 
                 DifficultySelector diff;
                 
-                switch (level) {
+                switch (level) 
+                {
                     case 1:
                         diff = new Easy();
                         break;
@@ -71,11 +79,13 @@ public class MainMatchGame {;
 
                 int matchedPairs = 0;
 
-                while (matchedPairs < game.getTotalPairs()) {
+                while (matchedPairs < game.getTotalPairs()) 
+                {
                     UtilGame.bersihkanLayar();
                     view.printBoard(game);
 
-                    try {
+                    try 
+                    {
                         // Pilih kartu pertama
                         view.showMessage("Pilih kartu pertama (baris lalu kolom): ");
                         System.out.print("Baris : ");
@@ -85,13 +95,15 @@ public class MainMatchGame {;
                         int Kolom1 = input.nextInt();
                         input.nextLine();
                         
-                        if (Baris1 < 0 || Baris1 >= game.getSize() || Kolom1 < 0 || Kolom1 >= game.getSize()) {
+                        if (Baris1 < 0 || Baris1 >= game.getSize() || Kolom1 < 0 || Kolom1 >= game.getSize()) 
+                        {
                             view.showMessage("Posisi kartu 1 di luar batas!");
                             Thread.sleep(delayOutput); 
                             continue;
                         }
                         
-                        if (game.getKartu(Baris1, Kolom1).isMatched() || game.getKartu(Baris1, Kolom1).isKebuka()) {
+                        if (game.getKartu(Baris1, Kolom1).isMatched() || game.getKartu(Baris1, Kolom1).isKebuka()) 
+                        {
                             view.showMessage("Kartu itu udah kebuka!");
                             Thread.sleep(delayOutput); 
                             continue;
@@ -120,14 +132,16 @@ public class MainMatchGame {;
                             continue;
                         }
 
-                        if (Baris2 < 0 || Baris2 >= game.getSize() || Kolom2 < 0 || Kolom2 >= game.getSize()) {
+                        if (Baris2 < 0 || Baris2 >= game.getSize() || Kolom2 < 0 || Kolom2 >= game.getSize()) 
+                        {
                             view.showMessage("Posisi kartu 2 di luar batas!");
                             Thread.sleep(delayOutput);
                             game.getKartu(Baris1, Kolom1).setKebuka(false); // tutup lagi kartu 1
                             continue;
                         }
                         
-                        if ((Baris1 == Baris2 && Kolom1 == Kolom2) || game.getKartu(Baris2, Kolom2).isMatched()) {
+                        if ((Baris1 == Baris2 && Kolom1 == Kolom2) || game.getKartu(Baris2, Kolom2).isMatched()) 
+                        {
                             view.showMessage("Gak boleh pilih kartu yang sama!");
                             Thread.sleep(delayOutput);
                             game.getKartu(Baris1, Kolom1).setKebuka(false);
@@ -138,20 +152,24 @@ public class MainMatchGame {;
                         view.revealBoard(game, Baris2, Kolom2);
 
                         // Cek Match
-                        if (game.isMatched(Baris1, Kolom1, Baris2, Kolom2)) {
+                        if (game.isMatched(Baris1, Kolom1, Baris2, Kolom2)) 
+                        {
                             view.showMessage("Match Benar");
                             Thread.sleep(delayOutput); 
                             game.getKartu(Baris1, Kolom1).setMatched(true);
                             game.getKartu(Baris2, Kolom2).setMatched(true);
                             matchedPairs++;
-                        } else {
+                        } 
+                        else 
+                        {
                             view.showMessage("Match Salah");
                             Thread.sleep(delayOutput); 
                             game.getKartu(Baris1, Kolom1).setKebuka(false);
                             game.getKartu(Baris2, Kolom2).setKebuka(false);
-                        }
-                        
-                    } catch (Exception e) {
+                        }    
+                    } 
+                    catch (Exception e) 
+                    {
                         view.showMessage("Input harus angka");
                         try {Thread.sleep(delayOutput);} catch (Exception w) {}
                         input.nextLine(); // clear buffer
@@ -167,7 +185,8 @@ public class MainMatchGame {;
                 view.showMessage("Nama Inisialmu : ");
                 String nama = input.nextLine();
                 
-                if (nama.isEmpty()) {
+                if (nama.isEmpty()) 
+                {
                     nama = "Player";
                 }
 
@@ -189,10 +208,11 @@ public class MainMatchGame {;
                         break;
                 }
                
-                System.out.println("Skor disimpan ,waktu: " + player.getTime() + " detik, Kesusahan: " + player.getDifficulty());
+                view.showMessage("Skor disimpan ,waktu: " + player.getTime() + " detik, Kesusahan: " + player.getDifficulty());
                 try {Thread.sleep(delayOutput);} catch (Exception e) {}
-
-            } else if (pilihan == 2) {
+            } 
+            else if (pilihan == 2) 
+            {
                 UtilGame.bersihkanLayar();
                 view.showMessage("Silahkan Kategori Tingkat Kesulitan LeaderBoard");
                 view.showMessage("1. Easy");
@@ -200,11 +220,13 @@ public class MainMatchGame {;
                 view.showMessage("3. Hard");
                 System.out.print("Pilihan : ");
                 pilihan = -1;
-                try {
+                try 
+                {
                     pilihan = input.nextInt();
                     input.nextLine();
                     Thread.sleep(delayOutput);
-                } catch (Exception e) {input.nextLine();}
+                } 
+                catch (Exception e) {input.nextLine();}
                 
                 switch (pilihan)
                 {
@@ -224,13 +246,14 @@ public class MainMatchGame {;
                 }
                 view.showMessage("Press Enter to go back");
                 input.nextLine(); // nersih enter
-            } else if (pilihan == 3) {
+            } 
+            else if (pilihan == 3) 
+            {
                 view.showMessage("Keluar Game...");
                 try {Thread.sleep(delayOutput);} catch (Exception e) {}
                 isMenuBerjalan = false; // Bikin loop menu berhenti
             }
         }
-
         input.close();
     }
 }

@@ -1,30 +1,40 @@
 package com.MainTampilan;
 
 //data kartu bisa disimpan jadi objek saja
-public class Kartu {
+public class Kartu 
+{
     private int angka;
     private boolean terbuka;
     private boolean sudahCocok;
 
-    public Kartu(int angka) {
-        this.angka =angka;
-        this.terbuka =false;
-        this.sudahCocok =false;
+    public Kartu(int angka) 
+    {
+        this.angka = angka;
+        this.terbuka = false;
+        this.sudahCocok = false;
     }
-    public int getAngka(){
+    public int getAngka()
+    {
         return angka;
     }
-    public boolean isKebuka(){
+    
+    public boolean isKebuka()
+    {
         return terbuka;
     }
-    public void setKebuka(boolean terbuka){
+
+    public void setKebuka(boolean terbuka)
+    {
         this.terbuka = terbuka;
     }
-    public boolean isMatched(){
+
+    public boolean isMatched()
+    {
         return sudahCocok;
     }
 
-    public void setMatched(boolean sudahCocok){
+    public void setMatched(boolean sudahCocok)
+    {
         this.sudahCocok = sudahCocok;
     }
 }

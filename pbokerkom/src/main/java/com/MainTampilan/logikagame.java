@@ -2,14 +2,16 @@ package com.MainTampilan;
 
 import java.util.Random;
 
-public class LogikaGame {
+public class LogikaGame 
+{
     public Random random = new Random();
     private Kartu[][] board; 
     private int size;
     private int totalPairs;
 
     //Mempetakan Barisan Peta MatchGame
-    public LogikaGame(int pairs) {
+    public LogikaGame(int pairs) 
+    {
         this.size = pairs * 2;
         this.totalPairs =(size*size)/2; 
         this.board =new Kartu[size][size]; //kalau sebelumnya pakaai map tile dan map revealed, file kartu.java nyimpan itu biar ada encapsulation
@@ -17,7 +19,8 @@ public class LogikaGame {
     }
 
     //Membuat Barisan Angka untuk pemetaan
-    private void generateBoard(){
+    private void generateBoard()
+    {
         int[] randomNumbers = new int[size * size];
 
         // bikin sepasang angka
@@ -45,19 +48,24 @@ public class LogikaGame {
         }
     }
 
-    public int getSize() {
+    public int getSize() 
+    {
         return size;
     }
 
-    public int getTotalPairs() {
+    public int getTotalPairs() 
+    {
         return totalPairs;
     }
+
     //pindahin ke kartu.jawa e biar rapih dan bisa diakses sama mainmatchgame
-    public Kartu getKartu(int row, int col) {
+    public Kartu getKartu(int row, int col) 
+    {
         return board[row][col];
     }
 
-    public boolean isMatched(int r1, int c1, int r2, int c2) {
+    public boolean isMatched(int r1, int c1, int r2, int c2) 
+    {
         // cek kalau angkanya sama tapi posisinya beda 
         if (r1 == r2 && c1 == c2) return false;
         return board[r1][c1].getAngka() == board[r2][c2].getAngka();

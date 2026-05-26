@@ -1,7 +1,7 @@
 package com.DifficultyLogic;
 
-public class Easy implements DifficultySelector {
-    
+public class Easy implements DifficultySelector 
+{   
     @Override
     public String difficultyChosen()
     {
@@ -9,12 +9,14 @@ public class Easy implements DifficultySelector {
     }
 
     @Override
-    public int boardSize() {
+    public int boardSize() 
+    {
         return 2;
     }
 
     @Override
-    public void difficulty() {
+    public void difficulty() 
+    {
         System.out.println("Tingkat Kesulitan: Easy (Papan 4x4)");
     }
 }
