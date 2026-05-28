@@ -2,13 +2,16 @@ package com.Game;
 
 import java.util.Scanner;
 
+//Import File yang diperlukan
 import com.DifficultyLogic.*;
 import com.LeaderBoardLogic.*;
 import com.MainTampilan.*;
 import com.settings.UtilGame;
 
+//Class utama yang menjalankan game
 public class MainMatchGame 
 {
+    //Bikin objek untuk masing-masing class yang diperlukan
     static LeaderBoardEasy leaderBoardEasy = new LeaderBoardEasy();
     static LeaderBoardMedium leaderBoardMedium = new LeaderBoardMedium();
     static LeaderBoardHard leaderBoardHard = new LeaderBoardHard();
@@ -16,11 +19,12 @@ public class MainMatchGame
     static Tampilan view = new Tampilan();
     static Scanner input = new Scanner(System.in);
     
-    //Shindo bikin tampilan dengan ada pilihan 1. Start, 2. leaderboard, 3.Exit (yang bagian kedua dikerjain Tony)
+    //Main Method yang menjalankan game
     public static void main(String[] args) 
     {
         boolean isMenuBerjalan = true;
         
+        // Loop utama untuk menu
         while (isMenuBerjalan) 
         {
             UtilGame.bersihkanLayar();
@@ -32,6 +36,7 @@ public class MainMatchGame
             view.showMessage("=====================");
             System.out.print("Pilih: ");
             
+            // Validasi input untuk menu utama
             try 
             {
                 pilihan = input.nextInt();
@@ -45,6 +50,7 @@ public class MainMatchGame
             
             try {Thread.sleep(delayOutput);} catch (Exception e){}
 
+            //Pilihan main main game, lihat leaderboard, atau keluar
             if (pilihan == 1) 
             {
                 // Logika milih level
@@ -53,6 +59,7 @@ public class MainMatchGame
                 
                 DifficultySelector diff;
                 
+                //Pilih level tingkat kesusahan
                 switch (level) 
                 {
                     case 1:
@@ -69,16 +76,19 @@ public class MainMatchGame
                         continue;
                 }
 
+                //Dapatkan ukuran papan dari level yang dipilih
                 String diffSelect = diff.difficultyChosen();
                 diff.difficulty();
                 int ukuranPapan = diff.boardSize();
 
                 double waktumulai = System.nanoTime();
 
+                //Pemetaan Game Matching Game
                 LogikaGame game = new LogikaGame(ukuranPapan); 
 
                 int matchedPairs = 0;
 
+                // Loop utama untuk permainan, akan terus berjalan sampai semua pasangan kartu ditemukan
                 while (matchedPairs < game.getTotalPairs()) 
                 {
                     UtilGame.bersihkanLayar();
@@ -95,6 +105,7 @@ public class MainMatchGame
                         int Kolom1 = input.nextInt();
                         input.nextLine();
                         
+                        //Validasi input untuk kartu pertama
                         if (Baris1 < 0 || Baris1 >= game.getSize() || Kolom1 < 0 || Kolom1 >= game.getSize()) 
                         {
                             view.showMessage("Posisi kartu 1 di luar batas!");
@@ -132,6 +143,7 @@ public class MainMatchGame
                             continue;
                         }
 
+                        //Validasi input untuk kartu kedua
                         if (Baris2 < 0 || Baris2 >= game.getSize() || Kolom2 < 0 || Kolom2 >= game.getSize()) 
                         {
                             view.showMessage("Posisi kartu 2 di luar batas!");
@@ -176,6 +188,7 @@ public class MainMatchGame
                     }
                 }
 
+                // Permainan selesai, tampilkan papan dan waktu
                 view.printBoard(game);
                 view.showMessage("SELAMAT! Kamu menang!");
 
@@ -190,6 +203,7 @@ public class MainMatchGame
                     nama = "Player";
                 }
 
+                //Pembuatan objek user untuk menyimpan skor dan nama pemain, lalu disimpan ke leaderboard sesuai tingkat kesusahan yang dipilih
                 User player = new User(time, nama);
 
                 switch (diffSelect)
@@ -208,12 +222,16 @@ public class MainMatchGame
                         break;
                 }
                
+                // Tampilkan skor yang disimpan
                 view.showMessage("Skor disimpan ,waktu: " + player.getTime() + " detik, Kesusahan: " + player.getDifficulty());
                 try {Thread.sleep(delayOutput);} catch (Exception e) {}
             } 
+            //Pilihan untuk melihat leaderboard
             else if (pilihan == 2) 
             {
                 UtilGame.bersihkanLayar();
+
+                // Menu untuk memilih tingkat kesusahan leaderboard yang ingin dilihat
                 view.showMessage("Silahkan Kategori Tingkat Kesulitan LeaderBoard");
                 view.showMessage("1. Easy");
                 view.showMessage("2. Medium");
@@ -228,6 +246,7 @@ public class MainMatchGame
                 } 
                 catch (Exception e) {input.nextLine();}
                 
+                // Tampilkan leaderboard sesuai pilihan tingkat kesusahan
                 switch (pilihan)
                 {
                     case 1:
@@ -247,6 +266,7 @@ public class MainMatchGame
                 view.showMessage("Press Enter to go back");
                 input.nextLine(); // nersih enter
             } 
+            //Pilihan untuk keluar dari game
             else if (pilihan == 3) 
             {
                 view.showMessage("Keluar Game...");

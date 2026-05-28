@@ -33,7 +33,7 @@ public class UtilGame
     //Metode membersihkan layar
     public static void bersihkanLayar()
     {
-        int Baris = 20;
+        int Baris = 40;
         for(int i = 0; i < Baris; i++)
         {
             System.out.println();
