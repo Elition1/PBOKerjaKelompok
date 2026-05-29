@@ -4,11 +4,6 @@ package com.LeaderBoardLogic;
 //class inijuga memakai semua atribut dan method dari leaderBoard
 public class LeaderBoardMedium extends LeaderBoard
 {
-    public LeaderBoardMedium()
-    {
-        super();
-    }
-
     @Override
     public void showLeaderBoard(String difficulty)
     {

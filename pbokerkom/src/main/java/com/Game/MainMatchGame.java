@@ -12,9 +12,9 @@ import com.settings.UtilGame;
 public class MainMatchGame 
 {
     //Bikin objek untuk masing-masing class yang diperlukan
-    static LeaderBoardEasy leaderBoardEasy = new LeaderBoardEasy();
-    static LeaderBoardMedium leaderBoardMedium = new LeaderBoardMedium();
-    static LeaderBoardHard leaderBoardHard = new LeaderBoardHard();
+    static LeaderBoard leaderBoardEasy = new LeaderBoardEasy();
+    static LeaderBoard leaderBoardMedium = new LeaderBoardMedium();
+    static LeaderBoard leaderBoardHard = new LeaderBoardHard();
     static int delayOutput = 1500;
     static Tampilan view = new Tampilan();
     static Scanner input = new Scanner(System.in);
@@ -140,6 +140,7 @@ public class MainMatchGame
                         {
                             UtilGame.WIN = false;
                             matchedPairs = game.getTotalPairs();
+                            game.getKartu(Baris1, Kolom1).setKebuka(false);
                             continue;
                         }
 
