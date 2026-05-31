@@ -54,8 +54,16 @@ public class MainMatchGame
             if (pilihan == 1) 
             {
                 // Logika milih level
+                int level = -1;
                 view.showMessage("Pilih: 1. Easy | 2. Medium | 3. Hard");
-                int level = input.nextInt();
+                try
+                {
+                    level = input.nextInt();
+                }
+                catch(Exception e){
+                    input.nextLine();
+                    continue;
+                }
                 
                 DifficultySelector diff;
                 
@@ -88,7 +96,8 @@ public class MainMatchGame
 
                 int matchedPairs = 0;
 
-                // Loop utama untuk permainan, akan terus berjalan sampai semua pasangan kartu ditemukan
+                // Loop utama untuk permainan, akan terus berjalan sampai 
+                // semua pasangan kartu ditemukan
                 while (matchedPairs < game.getTotalPairs()) 
                 {
                     UtilGame.bersihkanLayar();
@@ -204,7 +213,8 @@ public class MainMatchGame
                     nama = "Player";
                 }
 
-                //Pembuatan objek user untuk menyimpan skor dan nama pemain, lalu disimpan ke leaderboard sesuai tingkat kesusahan yang dipilih
+                //Pembuatan objek user untuk menyimpan skor dan nama pemain, lalu disimpan 
+                //ke leaderboard sesuai tingkat kesusahan yang dipilih
                 User player = new User(time, nama);
 
                 switch (diffSelect)
@@ -233,7 +243,7 @@ public class MainMatchGame
                 UtilGame.bersihkanLayar();
 
                 // Menu untuk memilih tingkat kesusahan leaderboard yang ingin dilihat
-                view.showMessage("Silahkan Kategori Tingkat Kesulitan LeaderBoard");
+                view.showMessage("Silahkan Masukkan Kategori Tingkat Kesulitan LeaderBoard");
                 view.showMessage("1. Easy");
                 view.showMessage("2. Medium");
                 view.showMessage("3. Hard");
